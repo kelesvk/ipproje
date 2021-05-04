@@ -1,5 +1,3 @@
-<?php include "inc/db.php"; ?>
-
 <!doctype html>
 <html lang="tr">
 
@@ -12,3 +10,4 @@
     <link href="css/main.css" rel="stylesheet">
     <title><?php echo $title; ?></title>
 </head>
+<?php include "inc/db.php"; ?>

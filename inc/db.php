@@ -12,6 +12,5 @@ if ($conn->connect_error) {
   die("Bağlantı başarısız. " . $conn->connect_error);
 }
 
-echo "Bağlantı başarılı!";
 
 ?>

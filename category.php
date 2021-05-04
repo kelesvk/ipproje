@@ -1,6 +1,11 @@
 <?php
-$title = "Makaleler";
-require("inc/header.php");
+include "inc/db.php";
+$category_id = $_GET["c_id"];
+$sql_category_name = "SELECT c_name FROM categories WHERE c_id='$category_id'";
+$select_category = mysqli_query($conn, $sql_category_name);
+$get_category = mysqli_fetch_assoc($select_category);
+$title = $get_category['c_name'];
+include("inc/header.php");
 ?>
 
 <body>
@@ -10,17 +15,19 @@ require("inc/header.php");
     <div class="container container-border pb-5">
 
         <!--        içerik         -->
-        <section id='content '>
-            <h2 class="text-start py-4">Makaleler</h2>
+        <section id='content ' class='vh-100'>
+            <h2 class="text-start py-4"><?php echo  $get_category['c_name']; ?></h2>
             <?php include 'inc/sidebar.php' ?>
-            <div class='row justify-content-between w-75'>
+            <div class='row justify-content-start w-75'>
 
 
                 <?php
-                $sql = "SELECT * FROM articles";
+                $category_id = $_GET["c_id"];
+
+                $sql = "SELECT * FROM articles WHERE a_cid='$category_id'";
                 $select_all_articles = mysqli_query($conn, $sql);
 
-                while ($row = mysqli_fetch_assoc($select_all_articles)) {
+                while ($row = mysqli_fetch_array($select_all_articles)) {
                     $article_id = $row["a_id"];
                     $article_name = $row["a_title"];
                     $article_summary = $row["a_summary"];
