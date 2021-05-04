@@ -1,7 +1,8 @@
-<?php 
+<?php
 $title = "Makaleler";
-require ("inc/header.php"); 
+require("inc/header.php");
 ?>
+
 <body>
     <header id='header'>
         <?php include 'inc/navbar.php' ?>
@@ -11,88 +12,36 @@ require ("inc/header.php");
         <!--        içerik         -->
         <section id='content '>
             <h2 class="text-start py-4">Makaleler</h2>
-            <div class='row justify-content-evenly'>
-                <div class='col-3'>
-                    <div class=" container content-border">
-                        <h3 class="text-center mt-2">Lorem ipsum </h3>
-                        <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur.</p>
-                        <div class="text-end mb-2"><a href="./aread.php" class="btn btn-secondary">Devamını Oku</a></div>
-                    </div>
-                </div>
-                <div class=' col-3 '>
-                    <div class="container content-border">
-                        <h3 class="text-center mt-2">Lorem ipsum </h3>
-                        <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur.</p>
-                        <div class="text-end mb-2"><a href="./aread.php" class="btn btn-secondary">Devamını Oku</a></div>
-                    </div>
-                </div>
-                <div class='col-3'>
-                    <div class=" container content-border">
-                        <h3 class="text-center mt-2">Lorem ipsum </h3>
-                        <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur.</p>
-                        <div class="text-end mb-2"><a href="./aread.php" class="btn btn-secondary">Devamını Oku</a></div>
-                    </div>
-                </div>
+            <?php include 'inc/sidebar.php' ?> 
+            <div class='row justify-content-between w-75'>
+            
+            
+                <?php 
+                $sql = "SELECT * FROM articles";
+                $select_all_articles = mysqli_query($conn, $sql);
+
+                while ($row = mysqli_fetch_assoc($select_all_articles)) {
+                    $article_name = $row["a_title"];
+                    $article_summary = $row["a_summary"];
+                    $article_author = $row["a_author"];
                 
-                <?php include 'inc/sidebar.php'?>
-
-            </div>
-
-            <!-- Alt -->
-            <div class='row justify-content-start pt-4'>
-                <div class='col-3'>
+                ?>
+                <div class='col-4 pb-4'>
                     <div class=" container content-border">
-                        <h3 class="text-center mt-2">Lorem ipsum </h3>
-                        <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur.</p>
+                        <h3 class="text-center mt-2"><?php echo $article_name; ?> </h3>
+                        <p class=""><?php echo $article_summary; ?></p>
+                        <div class="float-start"> <?php echo $article_author; ?></div>
                         <div class="text-end mb-2"><a href="./aread.php" class="btn btn-secondary">Devamını Oku</a></div>
                     </div>
                 </div>
-                <div class=' col-3 '>
-                    <div class="container content-border">
-                        <h3 class="text-center mt-2">Lorem ipsum </h3>
-                        <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur.</p>
-                        <div class="text-end mb-2"><a href="./aread.php" class="btn btn-secondary">Devamını Oku</a></div>
-                    </div>
-                </div>
-                <div class=' col-3 '>
-                    <div class="container content-border">
-                        <h3 class="text-center mt-2">Lorem ipsum </h3>
-                        <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua.
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat.
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur.</p>
-                        <div class="text-end mb-2"><a href="./aread.php" class="btn btn-secondary">Devamını Oku</a></div>
-                    </div>
-                </div>
+                <?php } ?>
+               
+
+                
 
             </div>
+                      
+           
 
         </section>
 
