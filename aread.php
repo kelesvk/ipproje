@@ -6,7 +6,7 @@ $select_article = mysqli_query($conn, $sql);
 $get_article = mysqli_fetch_array($select_article);
 $title = $get_article['a_title'];;
 include("inc/header.php");
-
+include("inc/func.php");
 ?>
 
 <body>
@@ -28,13 +28,8 @@ include("inc/header.php");
                 </article>
                 <?php include 'inc/sidebar.php' ?>
             </div>
-
+        <?php echo $showview; ?>
         </section>
-
-
-
-
-
 
 
     </div>

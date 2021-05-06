@@ -26,6 +26,8 @@ require("inc/header.php");
                     $article_summary = $row["a_summary"];
                     $article_author = $row["a_author"];
                     $article_cid = $row["a_cid"];
+                    $article_date = date("d-m-Y", strtotime($row["a_date"]));  
+                    $article_view = $row["a_view"]
 
                 ?>
                     <div class='col-md-4 mb-4'>
@@ -34,7 +36,7 @@ require("inc/header.php");
                             <p class=""><?php echo substr($article_summary, 0, 200); ?>... <a href="<?php echo "./aread.php?a_id={$article_id}"; ?>">Devamını Oku</a></p>
 
                             <hr>
-                            <div class="text-center pb-3"><b><?php echo $article_author; ?></b></div>
+                            <div class="text-center pb-3"><b><?php echo "{$article_author} | {$article_date} | {$article_view}"; ?></b></div>
                         </div>
                     </div>
                 <?php } ?>
