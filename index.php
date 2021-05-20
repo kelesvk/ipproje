@@ -9,7 +9,7 @@ require("inc/header.php");
     </header>
     <div class="container container-border pb-5">
         <!-- Slide -->
-        <div class="container-lg  pb-0 px-0">
+        <div class="container-lg pb-0 px-0">
             <div id="carouselCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -120,9 +120,7 @@ require("inc/header.php");
 
     <?php include 'inc/footer.php'; ?>
 
-    <!-- JavaScript -->
-
-    <script src="js/bootstrap.bundle.min.js"></script>
+   
 
 
 </body>

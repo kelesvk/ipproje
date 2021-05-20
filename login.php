@@ -10,7 +10,7 @@ require ("inc/header.php");
         <!-- Form -->
 
         <section id="loginform">
-            <div class="position-absolute top-50 start-50 translate-middle w-25">
+            <div class="position-absolute top-50 start-50 translate-middle vw-50">
                 <form>
                     <hr />
                     <div class="mb-3 ">
@@ -42,10 +42,7 @@ require ("inc/header.php");
     </div>
     <?php include 'inc/footer.php'; ?>
 
-    <!-- JavaScript -->
-
-    <script src="js/bootstrap.bundle.min.js"></script>
-
+ 
 
 </body>
 

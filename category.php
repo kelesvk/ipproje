@@ -62,10 +62,7 @@ include("inc/header.php");
 
     <?php include 'inc/footer.php'; ?>
 
-    <!-- JavaScript -->
-
-    <script src="js/bootstrap.bundle.min.js"></script>
-
+ 
 
 </body>
 
