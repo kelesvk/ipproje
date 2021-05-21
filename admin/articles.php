@@ -52,8 +52,6 @@ include "inc/adminheader.php"; ?>
                         <td class="w-25 mx-auto">
                               <div class="input-group mx-auto">
 
-                                    <button class="btn w-50 btn-outline-secondary" id="c_change" data-id="<?php echo $articles_id; ?>" type="button" data-bs-toggle='modal' data-bs-target='#change_modal'>Düzenle</button>
-
                                     <button class="btn w-50 btn-danger" id="a_delete" data-id="<?php echo $articles_id; ?>" type="button" data-bs-toggle='modal' data-bs-target='#delete_modal'>Kaldır</button>
                               </div>
                         </td>
