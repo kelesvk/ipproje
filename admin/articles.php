@@ -1,4 +1,5 @@
-<?php $title = "Makaleler";
+<?php 
+$title = "Makaleler";
 include "inc/adminheader.php"; ?>
 
 <?php include "inc/adminsidebar.php"; ?>
@@ -6,7 +7,9 @@ include "inc/adminheader.php"; ?>
       <h1 class="h2">Makaleler</h1>
       <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle='modal' data-bs-target='#add_modal'>Ekle</button>
+                  <form action="" method="post">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary" name="add_article">Ekle</button>
+                  </form>
             </div>
       </div>
 </div>
@@ -30,6 +33,8 @@ include "inc/adminheader.php"; ?>
                   $articles_id = $row["a_id"];
                   $articles_title = $row["a_title"];
                   $a_cid = $row["a_cid"];
+                  $articles_author = $row["a_author"];
+                  $articles_content = $row["a_content"];
                   $articles_view = $row["a_view"];
                   $category_name = mysqli_fetch_array(mysqli_query($conn, "SELECT c_name FROM categories WHERE c_id='$a_cid'"));
             ?>
@@ -51,11 +56,16 @@ include "inc/adminheader.php"; ?>
                         </td>
                         <td class="w-25 mx-auto">
                               <div class="input-group mx-auto">
-
+                                    <a class="btn w-50 btn-outline-secondary" id="a_edit" href='<?php echo "./editarticle.php?a_id={$articles_id}"; ?>' type="button">Düzenle</a>
                                     <button class="btn w-50 btn-danger" id="a_delete" data-id="<?php echo $articles_id; ?>" type="button" data-bs-toggle='modal' data-bs-target='#delete_modal'>Kaldır</button>
                               </div>
                         </td>
                   </tr>
+
+
+
+
+
             <?php } ?>
       </tbody>
 </table>
@@ -86,6 +96,7 @@ include "inc/adminheader.php"; ?>
             </div>
       </div>
 </div>
+
 <?php
 if (isset($_POST["delete_article"])) {
       $delete_article_id = $_POST["article_id"];
@@ -95,6 +106,18 @@ if (isset($_POST["delete_article"])) {
       echo "<meta http-equiv='refresh' content='0'>";
 }
 
-?>
+if (isset($_POST["add_article"])) {
+      $add_article_name = 'Makale Başlığı';
+      $sql = "INSERT INTO articles(a_title) VALUE('$add_article_name')";
+      $add_category = mysqli_query($conn, $sql);
 
+      $sql2 = "SELECT * FROM articles WHERE a_id=(SELECT MAX(a_id) FROM articles)";
+      $select_article2 = mysqli_query($conn, $sql2);
+      $get_article2 = mysqli_fetch_array($select_article2);
+      $id = $get_article2['a_id'];
+
+      header("Location: ./editarticle.php?a_id={$id}");
+}
+
+?>
 <?php include "inc/adminfooter.php"; ?>

@@ -1,14 +1,16 @@
 <?php
 include "inc/db.php";
-$category_id = $_GET["c_id"];
-$sql_category_name = "SELECT c_name FROM categories WHERE c_id='$category_id'";
-$select_category = mysqli_query($conn, $sql_category_name);
-$get_category = mysqli_fetch_assoc($select_category);
-$title = $get_category['c_name'];
+if (isset($_POST["searchbutton"])) {
+    $search = $_POST["search"];
+} else {
+    header("Location:article.php");
+}
+
+$title = $search;
 include("inc/header.php");
 ?>
 
-<body>
+<body class=>
     <header id='header'>
         <?php include 'inc/navbar.php' ?>
     </header>
@@ -16,25 +18,34 @@ include("inc/header.php");
 
         <!--        içerik         -->
         <section id='content' >
-            <h2 class="text-start pt-4"><?php echo  $get_category['c_name']; ?></h2>
+            <h2 class="text-start pt-4"><?php echo 'Aranan: ' . $search; ?></h2>
             <hr>
             <?php include 'inc/sidebar.php' ?>
             <div class='row justify-content-start w-75'>
 
 
                 <?php
-                $category_id = $_GET["c_id"];
 
-                $sql = "SELECT * FROM articles WHERE a_cid='$category_id'";
+                if ($search == "") {
+                    header("Location:article.php");
+                }
+                $sql = "SELECT * FROM articles WHERE a_content LIKE '%$search%' ORDER BY a_id DESC";
+
                 $select_all_articles = mysqli_query($conn, $sql);
+                if(mysqli_num_rows($select_all_articles) == 0){?>
 
+                    <div class="text-center display-4"><b>Sonuç Bulunumadı!</b></div>
+                    
+
+                <?php
+                }else{
                 while ($row = mysqli_fetch_array($select_all_articles)) {
                     $article_id = $row["a_id"];
                     $article_name = $row["a_title"];
                     $article_summary = $row["a_summary"];
                     $article_author = $row["a_author"];
                     $article_cid = $row["a_cid"];
-                    $article_date = date("d-m-Y", strtotime($row["a_date"]));  
+                    $article_date = date("d-m-Y", strtotime($row["a_date"]));
                     $article_view = $row["a_view"]
 
                 ?>
@@ -47,8 +58,7 @@ include("inc/header.php");
                             <div class="text-center pb-3"><b><?php echo "{$article_author} | {$article_date} | {$article_view}"; ?></b></div>
                         </div>
                     </div>
-                <?php } ?>
-
+                <?php }} ?>
 
 
 
@@ -63,7 +73,7 @@ include("inc/header.php");
 
     <?php include 'inc/footer.php'; ?>
 
- 
+
 
 </body>
 

@@ -1,4 +1,5 @@
 <aside class="w-25 float-end">
+ 
     <div class="card">
         <article class="card-group-item">
             <header class="card-header">
@@ -16,21 +17,22 @@
                         $count = mysqli_fetch_array($sql_count);
                         $result = $count[0];
                         $category_name = $row["c_name"];
+                        if($result != 0)
                         echo "<a href='./category.php?c_id={$category_id}' class='list-group-item'>{$category_name}<span class='float-end badge badge-light round bg-k20secondary'>{$result}</span> </a>";
+                        else
+                        echo "<a  class='list-group-item'>{$category_name}<span class='float-end badge badge-light round bg-danger'>{$result}</span> </a>";
                     }
                     ?>
-                    <!--<a href="#" class="list-group-item">Kategori 1<span
-                                            class="float-end badge badge-light round bg-k20secondary">12</span> </a>
-                                    <a href="#" class="list-group-item">Kategori 2<span
-                                            class="float-end badge badge-light round bg-k20secondary">65</span> </a>
-                                    <a href="" class="list-group-item">Kategori 3<span
-                                            class="float-end badge badge-light round bg-k20secondary">90</span> </a>
-                                    <a href="#" class="list-group-item">Kategori 4<span
-                                            class="float-end badge badge-light round bg-k20secondary">15</span> </a>
-                                -->
+
                 </div>
             </div>
         </article>
 
+    </div>
+    <form action="search.php" method="post">
+    <div class="input-group mt-3">
+        <input type="text" class="form-control" placeholder="Aranalıcak kelime" aria-label="Arama" name="search">
+        <button class="btn btn-outline-secondary" type="submit" name="searchbutton" id="searchbutton">Arama</button>
+        </form>
     </div>
 </aside>

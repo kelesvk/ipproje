@@ -21,6 +21,22 @@
               Makaleler
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="comments.php">
+              <span data-feather="file"></span>
+              Yorumlar
+            </a>
+          </li>
+          <li class="nav-item">
+            <?php
+              if ($_SESSION["perm"] == 2) {         
+            ?>
+            <a class="nav-link" href="users.php">
+              <span data-feather="file"></span>
+              Kullanıcılar
+            </a>
+          </li>
+          <?php } ?>
         </ul>
 
 

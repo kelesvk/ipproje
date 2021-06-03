@@ -1,14 +1,29 @@
-<?php include "../inc/db.php"?>
+<?php
+ob_start();
+include "../inc/db.php";
+session_start(); 
+if(isset($_SESSION["perm"])){
+    if($_SESSION["perm"] == 0){
+        header("Location: ../index.php");
+
+    }
+}else{
+    header("Location: ../index.php");
+}
+?>
 <!doctype html>
-<html lang="tr">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo $title; ?></title>
+ 
+    <link rel="stylesheet" type="text/css" href="./css/trix.css">
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -36,10 +51,10 @@
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Çıkış Yap</a>
+                <a class="nav-link" href="logout.php">Çıkış Yap</a>
             </li>
         </ul>
     </header>

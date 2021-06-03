@@ -63,7 +63,7 @@ include "inc/adminheader.php"; ?>
       <div class="modal-dialog">
             <div class="modal-content">
                   <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Kategori Ekle</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
@@ -86,23 +86,23 @@ include "inc/adminheader.php"; ?>
 </div>
 
 <?php
-            if (isset($_POST["add_category"])) {
-                  $add_category_name = $_POST["category_name"];
+if (isset($_POST["add_category"])) {
+      $add_category_name = $_POST["category_name"];
 
-                  if ($add_category_name != "" || !(empty($add_category_name))) {
-                        $sql = "INSERT INTO categories(c_name) VALUE('$add_category_name')";
-                        $add_category = mysqli_query($conn, $sql);
-                        echo "<meta http-equiv='refresh' content='0'>";
-                  }
-            }
+      if ($add_category_name != "" || !(empty($add_category_name))) {
+            $sql = "INSERT INTO categories(c_name) VALUE('$add_category_name')";
+            $add_category = mysqli_query($conn, $sql);
+            echo "<meta http-equiv='refresh' content='0'>";
+      }
+}
 
-            ?>
+?>
 <!-- Delete Modal -->
 <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
             <div class="modal-content">
                   <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Kategori Kaldır</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
@@ -123,21 +123,21 @@ include "inc/adminheader.php"; ?>
       </div>
 </div>
 <?php
-            if (isset($_POST["delete_category"])) {
-                  $delete_category_id = $_POST["category_id"];
+if (isset($_POST["delete_category"])) {
+      $delete_category_id = $_POST["category_id"];
 
-                  $sql = "DELETE FROM categories WHERE c_id='$delete_category_id'";
-                  $delete_category = mysqli_query($conn, $sql);
-                  echo "<meta http-equiv='refresh' content='0'>";
-            }
+      $sql = "DELETE FROM categories WHERE c_id='$delete_category_id'";
+      $delete_category = mysqli_query($conn, $sql);
+      echo "<meta http-equiv='refresh' content='0'>";
+}
 
-            ?>
+?>
 <!-- Change Modal -->
 <div class="modal fade" id="change_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
             <div class="modal-content">
                   <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Kategori Değiştir</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
@@ -165,7 +165,7 @@ include "inc/adminheader.php"; ?>
 <?php
 if (isset($_POST["change_category"])) {
       $category_id = $_POST["category_id"];
- 
+
       $category_name = $_POST["category_name"];
 
       $sql = "UPDATE categories SET c_name='$category_name' WHERE c_id='$category_id'";

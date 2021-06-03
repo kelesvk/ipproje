@@ -43,6 +43,10 @@ p {
   border-width: 2px;
 }
 
+#content{
+  min-height: 100vh!important;
+}
+
 hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
